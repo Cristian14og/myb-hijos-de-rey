@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M&D Hijos Del Rey</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="index-page">
+
+    <!-- Cabecera -->
+    <!-- Header Mejorado -->
+<header>
+    <div class="container">
+        <div class="logo">
+  <img src="img/logo.png" alt="Logo M&D Hijos Del Rey">
+  <span class="logo-text">MyD Hijos Del Rey</span>
+</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+    
+            <div class="user-actions">
+                <a href="login.html"><i class="fas fa-user"></i></a>
+                <a href="carrito.html"><i class="fas fa-shopping-cart"></i></a>
+                <a href="cotizar.html"><i class="fas fa-pencil-ruler"></i></a>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <!-- Carrusel Hero Automático -->
+<section class="hero-carousel">
+    <div class="carousel">
+      <div class="slide active" style="background-image: url('https://blog.jamar.com/wp-content/smush-webp/FOTO-3-COMEDOR-CAPITONEADO.jpg.webp');">
+        <div class="overlay">
+          <h2>Diseñamos Muebles a tu Medida</h2>
+          <p>Descubre la belleza y calidad de la madera trabajada a mano.</p>
+          <a href="catalogo.html" class="btn primary-btn">Ver Catálogo</a>
+        </div>
+      </div>
+      <div class="slide" style="background-image: url('https://rbaccpro.blob.core.windows.net/medio/2024/05/16/salon-con-sofas-blancos-y-mesa-de-centro-de-madera-00544923_335d76c8_240516092955_1280x720.webp');">
+        <div class="overlay">
+          <h2>Elegancia y Estilo para tu Hogar</h2>
+          <p>Creaciones únicas hechas a mano.</p>
+          <a href="catalogo.html" class="btn primary-btn">Ver Más</a>
+        </div>
+      </div>
+      <div class="slide" style="background-image: url('https://republicainmobiliaria.com/wp-content/uploads/2019/10/01-3.jpg');">
+        <div class="overlay">
+          <h2>Muebles Artesanales</h2>
+          <p>Una tradición que se siente en cada pieza.</p>
+          <a href="catalogo.html" class="btn primary-btn">Explorar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="categories">
+    <div class="container">
+      <h2 class="section-title">Categorías Destacadas</h2>
+      <div class="category-grid">
+      <a href="catalogo.html?categoria=sofas" class="category-card" style="text-decoration: none; color: inherit;">
+  <div class="category-image" style="background-image: url('img/sofas.avif');"></div>
+  <h3>Sofás</h3>
+</a>
+<a href="catalogo.html?categoria=habitacion" class="category-card" style="text-decoration: none; color: inherit;">
+  <div class="category-image" style="background-image: url('img/habitacion.avif');"></div>
+  <h3>Habitación</h3>
+</a>
+<a href="catalogo.html?categoria=poltronas" class="category-card" style="text-decoration: none; color: inherit;">
+  <div class="category-image" style="background-image: url('img/poltronas.avif');"></div>
+  <h3>Poltronas</h3>
+</a>
+<a href="catalogo.html?categoria=comedores" class="category-card" style="text-decoration: none; color: inherit;">
+  <div class="category-image" style="background-image: url('img/comedores.avif');"></div>
+  <h3>Comedores</h3>
+</a>
+
+      </div>
+    </div>
+  </section>
+  
+
+   <!-- Productos Destacados -->
+<section class="featured-products">
+    <div class="container">
+      <h2 class="section-title">Los Más Vendidos</h2>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-image" style="background-image: url('img/sofa-luke.avif');"></div>
+          <h3>Sofá Modelo Luke</h3>
+          <p>Funcional y elegante.</p>
+          <p class="price">$ 1.550.000</p>
+         <button class="btn primary-btn" onclick="agregarAlCarrito('Sofá Modelo Luke', 1550000)">Añadir al carrito</button>
+
+
+        </div>
+        <div class="product-card">
+          <div class="product-image" style="background-image: url('img/cama-rayada.avif');"></div>
+          <h3>Cama Rayada</h3>
+          <p>Comodidad y estilo.</p>
+          <p class="price">$ 1.420.000</p>
+         <button class="btn primary-btn" onclick="agregarAlCarrito('Cama Rayada', 1420000)">Añadir al carrito</button>
+
+        </div>
+        <div class="product-card">
+          <div class="product-image" style="background-image: url('img/comedor-6puestos.avif');"></div>
+          <h3>Comedor 6 Puestos</h3>
+          <p>Máximo confort.</p>
+          <p class="price">$ 2.500.000</p>
+          <button class="btn primary-btn" onclick="agregarAlCarrito('Comedor 6 Puestos', 2500000)">Añadir al carrito</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Diseño Personalizado -->
+<section class="custom-design" style="background-color: #dbb59aaf; color: white; text-align: center; padding: 60px 0; margin: 40px 0;">
+    <div class="container">
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">¿No encuentras lo que buscas?</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 30px;">Diseñamos muebles únicos según tus necesidades específicas</p>
+        <a href="cotizar.html" class="btn primary-btn" style="background-color: white; color: #edf0eb;">
+            <i class="fas fa-pencil-ruler"></i> Solicitar Diseño Personalizado
+        </a>
+    </div>
+</section>
+  
+    <!-- Testimonios -->
+   <section class="happy-clients container">
+  <h2 class="section-title">Galeria de Nuestros Clientes </h2>
+  <div class="testimonial-grid">
+    
+    <div class="testimonial-box">
+      <img src="img/testimonio1.avif" alt="Cliente 1">
+      <div class="testimonial-overlay">
+        <h3>Juego de Dormitorio Personalizado</h3>
+        <p><strong>Juan Pérez</strong></p>
+        <p>Muy linda y excelente calidad. Muy cumplidos con el tiempo de entrega.</p>
+        <div class="stars">★★★★★</div>
+      </div>
+    </div>
+
+    <div class="testimonial-box">
+      <img src="img/testimonio2.avif" alt="Cliente 2">
+      <div class="testimonial-overlay">
+        <h3>Juego de Sala Personalizado</h3>
+        <p><strong>María Gómez</strong></p>
+        <p>Buen servicio, aunque me gustaría más opciones de colores.</p>
+        <div class="stars">★★★☆☆</div>
+      </div>
+    </div>
+
+    <div class="testimonial-box">
+      <img src="img/testimonio3.avif" alt="Cliente 3">
+      <div class="testimonial-overlay">
+        <h3>Comedor 4 puestos Capitoneado</h3>
+        <p><strong>Carlos Ruiz</strong></p>
+        <p>Excelente trabajo artesanal. Recomendado al 100%.</p>
+        <div class="stars">★★★★★</div>
+      </div>
+    </div>
+
+    <div class="testimonial-box">
+      <img src="img/testimonio4.avif" alt="Cliente 4">
+      <div class="testimonial-overlay">
+        <h3>Juego de Sala Personalizado</h3>
+        <p><strong>Laura Martínez</strong></p>
+        <p>Bonito diseño pero el envío demoró un poco.</p>
+        <div class="stars">★★★★☆</div>
+      </div>
+    </div>
+
+    <div class="testimonial-box">
+      <img src="img/testimonio5.avif" alt="Cliente 5">
+      <div class="testimonial-overlay">
+        <h3>Cama Personalizada</h3>
+        <p><strong>Andrés Torres</strong></p>
+        <p>Superó mis expectativas, muy buen acabado y entrega rápida.</p>
+        <div class="stars">★★★★★</div>
+      </div>
+    </div>
+
+    <div class="testimonial-box">
+      <img src="img/testimonio6.avif" alt="Cliente 6">
+      <div class="testimonial-overlay">
+        <h3>Sofa L sencillo</h3>
+        <p><strong>Patricia Romero</strong></p>
+        <p>El producto es bueno, pero el empaque podría mejorar.</p>
+        <div class="stars">★★★★☆</div>
+      </div>
+    </div>
+
+    <div class="testimonial-box">
+      <img src="img/testimonio7.avif" alt="Cliente 7">
+      <div class="testimonial-overlay">
+        <h3>Poltrona de madera</h3>
+        <p><strong>Felipe Salazar</strong></p>
+        <p>Una experiencia increíble, volveré a comprar sin duda.</p>
+        <div class="stars">★★★★★</div>
+      </div>
+    </div>
+
+    <div class="testimonial-box">
+      <img src="img/testimonio8.avif" alt="Cliente 8">
+      <div class="testimonial-overlay">
+        <h3>Poltrona Personalizada</h3>
+        <p><strong>Camila Restrepo</strong></p>
+        <p>Buen servicio, pero me costó un poco el armado del mueble.</p>
+        <div class="stars">★★★★☆</div>
+      </div>
+    </div>
+
+    <div class="testimonial-box">
+      <img src="img/testimonio9.avif" alt="Cliente 9">
+      <div class="testimonial-overlay">
+        <h3>Sofas L</h3>
+        <p><strong>Diego Hernández</strong></p>
+        <p>Calidad top, atención excelente, y el diseño me encantó.</p>
+        <div class="stars">★★★★★</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+    <!-- Historia -->
+    <section class="about-preview">
+        <div class="container">
+            <div class="about-content">
+                <h2>Nuestra Historia, Tu Hogar</h2>
+                <p>Somos una familia dedicada a crear muebles únicos que combinan tradición artesanal y diseño moderno. Conoce más sobre nuestra pasión por la madera.</p>
+                <a href="nosotros.html" class="btn primary-btn">Conoce Más</a>
+            </div>
+        </div>
+        
+    </section>
+    <section class="team">
+      <div class="container">
+        <div class="team-grid">
+          <div class="team-member">
+            <div class="member-image" style="background-image: url('img/equipo1.jpeg');"></div>
+            <h3>Carlos Martínez</h3>
+            <p>Fundador y Maestro Ebanista</p>
+          </div>
+          <div class="team-member">
+            <div class="member-image" style="background-image: url('img/equipo2.jpeg');"></div>
+            <h3>Laura Pérez</h3>
+            <p>Diseñadora Principal</p>
+          </div>
+          <div class="team-member">
+            <div class="member-image" style="background-image: url('img/equipo3.jpeg');"></div>
+            <h3>Andrés Gómez</h3>
+            <p>Gerente de Ventas</p>
+          </div>
+          <div class="team-member">
+            <div class="member-image" style="background-image: url('img/equipo4.jpeg');"></div>
+            <h3>María López</h3>
+            <p>Asesora de Diseño</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+   <!-- AQUI EL FOOTER  -->
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <img src="img/logo.png" alt="Logo M&D Hijos Del Rey" style="height: 150px; margin-bottom: 10px;">
+        <p>Artesanía y tradición en cada mueble hecho a mano en Sampués, Sucre.</p>
+        <div class="social-links">
+          <p>Síguenos:</p>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>HORARIOS</h3>
+        <p><strong>Lunes a Sábado:</strong><br>08:00am - 6:00pm</p>
+        <p><strong>Domingos y Festivos:</strong><br>09:00am - 04:00pm</p>
+      </div>
+      <div class="footer-col">
+        <h3>UBICACIÓN</h3>
+        <p>Calle Principal #25-36<br>Sampués - Sucre, Colombia</p>
+        <a href="#" class="map-link"><i class="fas fa-map-marker-alt"></i> Ver en mapa</a>
+      </div>
+      <div class="footer-col">
+        <h3>CONTÁCTANOS</h3>
+        <p><i class="fas fa-phone"></i> +57 300 123 4567</p>
+        <p><i class="fas fa-phone"></i> +57 312 445 5667</p>
+        <p><i class="fas fa-envelope"></i> info@M&DHijosDelRey.com</p>
+      </div>
+      
+    <div class="footer-col" style="grid-column: span 5;">
+      <h3>SUSCRÍBETE</h3>
+      <p>Recibe nuestras promociones directo en tu correo.</p>
+      <form class="subscribe-form">
+        <input type="email" placeholder="Email">
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 M&D Hijos Del Rey. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/573244259132" class="whatsapp-float" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<script src="main.js"></script>
+
+<!-- Notificación Toast para productos agregados al carrito -->
+<div id="toast-notification" class="toast-hidden"></div>
+
+</body>
+</html>

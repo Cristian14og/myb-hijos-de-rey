@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - M&D Hijos Del Rey</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- El resto de tu código -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6b4226;
+            --secondary-color: #d9ba8c;
+            --accent-color: #d9ba8c;
+            --light-color: #f1dfd3;
+            --dark-color: #2c1e12;
+            --text-color: #333333;
+            --bg-color: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background-color: #e9f1f7;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 20px;
+        }
+
+        .user-actions a {
+            color: var(--primary-color);
+            font-size: 20px;
+        }
+
+        .catalog-header {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .filter-pills {
+            background-color: #f8f9fa;
+            padding: 30px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .pills-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            padding: 12px 28px;
+            border-radius: 25px;
+            border: 2px solid var(--primary-color);
+            background-color: white;
+            color: var(--primary-color);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .pill:hover, .pill.active {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(107, 66, 38, 0.3);
+        }
+
+        .catalog-products {
+            padding: 60px 0;
+        }
+
+        .results-info {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 35px;
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .category-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .product-details {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .detail-tag {
+            background-color: var(--light-color);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: var(--dark-color);
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .delivery-time {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #6b4226;
+            color: white;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-primary:hover {
+            background-color: #2e7c94;
+            transform: translateY(-2px);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 40px 0;
+        }
+
+        .pagination button {
+            padding: 10px 20px;
+            border: 2px solid var(--primary-color);
+            background-color: white;
+            color: var(--primary-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .pagination button:hover:not(:disabled) {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .pagination button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+            margin: 60px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary-color);
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--light-color);
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pills-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .pill {
+                text-align: center;
+            }
+        }
+        .catalog-header {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/fondo-catalogo.png');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    text-align: center;
+    color: white;
+}
+
+.catalog-header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.catalog-header p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.search-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary-color);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background: var(--secondary-color);
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <a href="login.html"><i class="fas fa-user"></i></a>
+                <a href="carrito.html"><i class="fas fa-shopping-cart"></i></a>
+                <a href="cotizar.html"><i class="fas fa-pencil-ruler"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <section class="catalog-header">
+    <div class="container">
+        <h1>Nuestro Catálogo</h1>
+        <p>Explora nuestra colección completa de muebles artesanales, diseñados para embellecer tu hogar.</p>
+        <div class="search-container">
+            <input type="text" placeholder="Buscar productos..." id="searchInput">
+            <button class="search-button"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+</section>
+
+    <section class="filter-pills">
+        <div class="container">
+            <div class="pills-container">
+                <button class="pill active" data-category="todos">Todos</button>
+                <button class="pill" data-category="salas">Salas</button>
+                <button class="pill" data-category="dormitorios">Dormitorios</button>
+                <button class="pill" data-category="comedores">Comedores</button>
+                <button class="pill" data-category="oficina">Oficina</button>
+                <button class="pill" data-category="poltronas">Poltronas</button>
+                <button class="pill" data-category="decoracion">Decoración</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="catalog-products">
+        <div class="container">
+            <div class="results-info">
+                Mostrando <span id="showingStart">1</span>-<span id="showingEnd">6</span> de <span id="totalProducts">18</span> productos
+            </div>
+            
+            <div class="product-grid" id="productGrid">
+                <!-- Los productos se cargarán aquí dinámicamente -->
+            </div>
+
+            <div class="pagination">
+                <button id="prevBtn" onclick="changePage('prev')">Anterior</button>
+                <button class="page-num active" onclick="goToPage(1)">1</button>
+                <button class="page-num" onclick="goToPage(2)">2</button>
+                <button class="page-num" onclick="goToPage(3)">3</button>
+                <button id="nextBtn" onclick="changePage('next')">Siguiente</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>¿No encuentras lo que buscas?</h2>
+            <p>Diseñamos muebles únicos según tus necesidades específicas</p>
+            <a href="carrito.html?tab=cotizacion" class="btn btn-secondary">
+                <i class="fas fa-pencil-ruler"></i> Solicitar Diseño Personalizado
+            </a>
+        </div>
+    </section>
+
+ <footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <img src="img/logo.png" alt="Logo M&D Hijos Del Rey" style="height: 150px; margin-bottom: 10px;">
+        <p>Artesanía y tradición en cada mueble hecho a mano en Sampués, Sucre.</p>
+        <div class="social-links">
+          <p>Síguenos:</p>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>HORARIOS</h3>
+        <p><strong>Lunes a Sábado:</strong><br>08:00am - 6:00pm</p>
+        <p><strong>Domingos y Festivos:</strong><br>09:00am - 04:00pm</p>
+      </div>
+      <div class="footer-col">
+        <h3>UBICACIÓN</h3>
+        <p>Calle Principal #25-36<br>Sampués - Sucre, Colombia</p>
+        <a href="#" class="map-link"><i class="fas fa-map-marker-alt"></i> Ver en mapa</a>
+      </div>
+      <div class="footer-col">
+        <h3>CONTÁCTANOS</h3>
+        <p><i class="fas fa-phone"></i> +57 300 123 4567</p>
+        <p><i class="fas fa-phone"></i> +57 312 445 5667</p>
+        <p><i class="fas fa-envelope"></i> info@M&DHijosDelRey.com</p>
+      </div>
+      
+      <div class="footer-col" style="grid-column: span 5;">
+        <h3>SUSCRÍBETE</h3>
+        <p>Recibe nuestras promociones directo en tu correo.</p>
+        <form class="subscribe-form">
+          <input type="email" placeholder="Email">
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 M&D Hijos Del Rey. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <a href="https://wa.me/573244259132" class="whatsapp-float" target="_blank" style="position: fixed; bottom: 20px; right: 20px; background-color: #25D366; color: white; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000; text-decoration: none;">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        const allProducts = [
+            {
+                id: 1,
+                name: "Mesa de Comedor Rústica",
+                category: "comedores",
+                description: "Mesa de comedor en madera maciza con acabado natural. Perfecta para 6 personas con detalles artesanales únicos.",
+                image: "img/Mesa de Comedor Rústica.png",
+                price: 1200000,
+                delivery: 18,
+                tags: ["Madera de pino", "Acabado natural"],
+                features: ["Material: Pino macizo", "Dimensiones: 180x90x75 cm", "Capacidad: 6 personas"],
+                fullDescription: "Hermosa mesa de comedor fabricada en madera de pino maciza, con acabado natural que resalta la belleza de las vetas. Diseño rústico que combina perfectamente con ambientes tradicionales y modernos."
+            },
+            {
+                id: 2,
+                name: "Sofá Modular Gris",
+                category: "salas",
+                description: "Sofá versátil de 3 puestos con tapicería en tela antifluidos y estructura de madera sostenible.",
+                image: "img/Sofá Modular Gris.jpg",
+                price: 2800000,
+                delivery: 15,
+                tags: ["Tela antifluidos", "3 módulos"],
+                features: ["Tapicería antifluidos", "Estructura de madera reforzada", "Cojines removibles"],
+                fullDescription: "Sofá modular elegante con tapicería en tela antifluidos de alta calidad. Su diseño versátil permite diferentes configuraciones según tus necesidades de espacio."
+            },
+            {
+                id: 3,
+                name: "Juego de Habitación Premium",
+                category: "dormitorios",
+                description: "Juego completo: cama King size, 2 mesas de noche y cómoda. Madera de cedro con acabado en laca brillante.",
+                image: "img/Cama King Size Lujo.png",
+                price: 4800000,
+                delivery: 25,
+                tags: ["Cedro", "King size", "4 piezas"],
+                features: ["Madera de cedro premium", "Acabado laca brillante", "Incluye 4 piezas"],
+                fullDescription: "Conjunto completo de habitación en madera de cedro de la más alta calidad. Incluye cama King size con cabecera tallada, dos mesas de noche con cajones y cómoda de 6 cajones."
+            },
+            {
+                id: 4,
+                name: "Escritorio Ejecutivo",
+                category: "oficina",
+                description: "Escritorio ejecutivo con cajones laterales y organizadores integrados. Ideal para home office.",
+                image: "img/Escritorio Clásico.jpg",
+                price: 950000,
+                delivery: 12,
+                tags: ["Madera de cedro", "3 cajones"],
+                features: ["Cedro macizo", "3 cajones con cerradura", "Organizadores integrados"],
+                fullDescription: "Escritorio ejecutivo de diseño clásico, perfecto para tu oficina en casa. Amplia superficie de trabajo con cajones laterales para almacenamiento."
+            },
+            {
+                id: 5,
+                name: "Mesa de Centro Minimalista",
+                category: "decoracion",
+                description: "Mesa de centro con diseño minimalista y acabado natural. Perfecta para espacios modernos.",
+                image: "img/Mesa de Centro Minimalista.jpg",
+                price: 550000,
+                delivery: 10,
+                tags: ["MDF enchapado", "Con compartimento"],
+                features: ["MDF enchapado en roble", "Compartimento inferior", "Diseño minimalista"],
+                fullDescription: "Mesa de centro con líneas limpias y diseño contemporáneo. Cuenta con compartimento inferior para revistas y control remoto."
+            },
+            {
+                id: 6,
+                name: "Juego de Sillas Modernas (4)",
+                category: "comedores",
+                description: "Juego de 4 sillas con respaldo ergonómico y estructura de madera maciza.",
+                image: "img/Comedor Moderno 4 Puestos.jpeg",
+                price: 980000,
+                delivery: 8,
+                tags: ["Madera maciza", "Tapizado premium"],
+                features: ["Respaldo ergonómico", "Tapizado removible", "Estructura reforzada"],
+                fullDescription: "Set de 4 sillas de comedor con diseño ergonómico para mayor comodidad. Tapizado en tela premium resistente y fácil de limpiar."
+            },
+            {
+                id: 7,
+                name: "Poltrona Reclinable Luxury",
+                category: "poltronas",
+                description: "Poltrona con mecanismo reclinable, tapizada en cuero sintético de alta calidad.",
+                image: "img/Mesa de Comedor Rústica.png",
+                price: 1350000,
+                delivery: 14,
+                tags: ["Reclinable", "Cuero sintético"],
+                features: ["Mecanismo reclinable", "Cuero sintético premium", "Reposabrazos acolchados"],
+                fullDescription: "Poltrona de lujo con sistema reclinable suave. Tapizada en cuero sintético de primera calidad, perfecta para relajación total."
+            },
+            {
+                id: 8,
+                name: "Biblioteca Clásica",
+                category: "oficina",
+                description: "Estantería de 5 niveles en madera de cedro con acabado vintage.",
+                image: "img/Sofá Modular Gris.jpg",
+                price: 1100000,
+                delivery: 16,
+                tags: ["5 niveles", "Cedro"],
+                features: ["5 repisas ajustables", "Cedro macizo", "Acabado vintage"],
+                fullDescription: "Biblioteca elegante con amplio espacio de almacenamiento. Ideal para oficinas, estudios o salas de estar."
+            },
+            {
+                id: 9,
+                name: "Cama Individual Juvenil",
+                category: "dormitorios",
+                description: "Cama individual con cajones inferiores para almacenamiento extra.",
+                image: "img/Cama King Size Lujo.png",
+                price: 850000,
+                delivery: 12,
+                tags: ["Individual", "Con cajones"],
+                features: ["Cajones bajo la cama", "Madera de pino", "Diseño juvenil"],
+                fullDescription: "Cama práctica con sistema de cajones integrados en la base, perfecta para optimizar espacios pequeños."
+            },
+            {
+                id: 10,
+                name: "Mesa Auxiliar Vintage",
+                category: "decoracion",
+                description: "Mesa auxiliar redonda con diseño vintage y patas torneadas.",
+                image: "img/Escritorio Clásico.jpg",
+                price: 380000,
+                delivery: 7,
+                tags: ["Vintage", "Redonda"],
+                features: ["Diseño vintage", "Patas torneadas", "Acabado envejecido"],
+                fullDescription: "Pequeña mesa auxiliar perfecta junto al sofá o como mesa de noche. Estilo vintage con carácter único."
+            },
+            {
+                id: 11,
+                name: "Comedor Redondo 4 Puestos",
+                category: "comedores",
+                description: "Mesa redonda con base central y 4 sillas tapizadas a juego.",
+                image: "img/Mesa de Centro Minimalista.jpg",
+                price: 1650000,
+                delivery: 20,
+                tags: ["Redonda", "4 sillas"],
+                features: ["Mesa redonda 120cm", "4 sillas incluidas", "Base central robusta"],
+                fullDescription: "Comedor completo con mesa redonda ideal para espacios íntimos. Incluye 4 sillas cómodas con tapizado elegante."
+            },
+            {
+                id: 12,
+                name: "Sofá Cama Multifuncional",
+                category: "salas",
+                description: "Sofá cama de 2 puestos que se convierte en cama doble con sistema desplegable.",
+                image: "img/Comedor Moderno 4 Puestos.jpeg",
+                price: 1950000,
+                delivery: 18,
+                tags: ["Multifuncional", "2 en 1"],
+                features: ["Sistema desplegable", "Colchón incluido", "Espacio de almacenaje"],
+                fullDescription: "Sofá versátil que se transforma en cama doble. Ideal para apartamentos pequeños o habitaciones de huéspedes."
+            },
+            {
+                id: 13,
+                name: "Poltrona Giratoria Moderna",
+                category: "poltronas",
+                description: "Poltrona giratoria 360° con base de acero y tapizado ergonómico.",
+                image: "img/Mesa de Comedor Rústica.png",
+                price: 980000,
+                delivery: 11,
+                tags: ["Giratoria", "Base de acero"],
+                features: ["Giro 360°", "Base metálica", "Diseño ergonómico"],
+                fullDescription: "Poltrona moderna con mecanismo giratorio suave. Perfecta para espacios de lectura o rincones de descanso."
+            },
+            {
+                id: 14,
+                name: "Tocador con Espejo",
+                category: "dormitorios",
+                description: "Tocador con espejo iluminado, 3 cajones y organizador superior.",
+                image: "img/Sofá Modular Gris.jpg",
+                price: 1250000,
+                delivery: 15,
+                tags: ["Con espejo", "3 cajones"],
+                features: ["Espejo con luz LED", "3 cajones amplios", "Organizador superior"],
+                fullDescription: "Elegante tocador con espejo iluminado por luces LED. Ideal para el arreglo personal con amplio espacio de almacenamiento."
+            },
+            {
+                id: 15,
+                name: "Estantería Modular Oficina",
+                category: "oficina",
+                description: "Sistema modular de estantes ajustables en acero y madera.",
+                image: "img/Cama King Size Lujo.png",
+                price: 750000,
+                delivery: 10,
+                tags: ["Modular", "Ajustable"],
+                features: ["Estantes ajustables", "Combinación acero-madera", "Fácil montaje"],
+                fullDescription: "Sistema de estanterías versátil y moderno. Los estantes son ajustables en altura para personalizar tu espacio."
+            },
+            {
+                id: 16,
+                name: "Set Mesas Nido (3 piezas)",
+                category: "decoracion",
+                description: "Juego de 3 mesas auxiliares que se guardan una dentro de otra.",
+                image: "img/Escritorio Clásico.jpg",
+                price: 620000,
+                delivery: 9,
+                tags: ["3 piezas", "Ahorra espacio"],
+                features: ["3 tamaños diferentes", "Diseño nido", "Madera y metal"],
+                fullDescription: "Set de mesas nido prácticas y decorativas. Perfectas para ahorrar espacio cuando no las uses todas."
+            },
+            {
+                id: 17,
+                name: "Banco de Comedor Tapizado",
+                category: "comedores",
+                description: "Banco largo tapizado para comedor, capacidad 3 personas.",
+                image: "img/Mesa de Centro Minimalista.jpg",
+                price: 680000,
+                delivery: 13,
+                tags: ["Tapizado", "3 personas"],
+                features: ["Largo 150cm", "Tapizado acolchado", "Patas de madera"],
+                fullDescription: "Banco elegante para comedor que añade un toque moderno. Cómodo y espacioso para 3 personas."
+            },
+            {
+                id: 18,
+                name: "Poltrona Vintage con Otomana",
+                category: "poltronas",
+                description: "Poltrona estilo vintage con otomana a juego, tapizado en terciopelo.",
+                image: "img/Comedor Moderno 4 Puestos.jpeg",
+                price: 1580000,
+                delivery: 17,
+                tags: ["Vintage", "Con otomana"],
+                features: ["Tapizado terciopelo", "Otomana incluida", "Patas de madera torneadas"],
+                fullDescription: "Conjunto vintage de poltrona y otomana tapizados en terciopelo suave. Un toque de elegancia clásica para tu hogar."
+            }
+        ];
+
+        let currentPage = 1;
+        const productsPerPage = 6;
+        let filteredProducts = [...allProducts];
+
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            const start = (currentPage - 1) * productsPerPage;
+            const end = start + productsPerPage;
+            const productsToShow = filteredProducts.slice(start, end);
+
+            grid.innerHTML = productsToShow.map(product => `
+                <div class="product-card" data-category="${product.category}" onclick="viewProduct(${product.id})">
+                    <div class="product-image" style="background-image: url('${product.image}');">
+                        <span class="category-badge">${getCategoryLabel(product.category)}</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-details">
+                            ${product.tags.map(tag => `<span class="detail-tag">${tag}</span>`).join('')}
+                        </div>
+                        <div class="product-footer">
+                            <span class="price">$ ${product.price.toLocaleString('es-CO')}</span>
+                            <span class="delivery-time"><i class="far fa-clock"></i> ${product.delivery} días</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="addToCart(event, ${product.id})">
+                            <i class="fas fa-shopping-cart"></i> Añadir al Carrito
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            updatePagination();
+        }
+
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+            const start = (currentPage - 1) * productsPerPage + 1;
+            const end = Math.min(start + productsPerPage - 1, filteredProducts.length);
+
+            document.getElementById('showingStart').textContent = start;
+            document.getElementById('showingEnd').textContent = end;
+            document.getElementById('totalProducts').textContent = filteredProducts.length;
+
+            document.getElementById('prevBtn').disabled = currentPage === 1;
+            document.getElementById('nextBtn').disabled = currentPage === totalPages;
+
+            document.querySelectorAll('.page-num').forEach((btn, index) => {
+                btn.classList.toggle('active', index + 1 === currentPage);
+            });
+        }
+
+        function changePage(direction) {
+            const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+            if (direction === 'prev' && currentPage > 1) {
+                currentPage--;
+            } else if (direction === 'next' && currentPage < totalPages) {
+                currentPage++;
+            }
+            renderProducts();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goToPage(page) {
+            currentPage = page;
+            renderProducts();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function getCategoryLabel(category) {
+            const labels = {
+                'comedores': 'Comedor',
+                'salas': 'Sala',
+                'dormitorios': 'Dormitorio',
+                'oficina': 'Oficina',
+                'poltronas': 'Poltrona',
+                'decoracion': 'Decoración'
+            };
+            return labels[category] || category;
+        }
+
+        function viewProduct(productId) {
+            sessionStorage.setItem('selectedProduct', JSON.stringify(allProducts.find(p => p.id === productId)));
+            window.location.href = 'producto.html';
+        }
+
+        function addToCart(event, productId) {
+            event.stopPropagation();
+            const product = allProducts.find(p => p.id === productId);
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${product.name} agregado al carrito`);
+        }
+
+        // Filtrado por pills
+        document.querySelectorAll('.pill').forEach(pill => {
+            pill.addEventListener('click', function() {
+                document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+                const category = this.getAttribute('data-category');
+                
+                if (category === 'todos') {
+                    filteredProducts = [...allProducts];
+                } else {
+                    filteredProducts = allProducts.filter(p => p.category === category);
+                }
+                
+                currentPage = 1;
+                renderProducts();
+            });
+        });
+
+        // Cargar productos al iniciar
+        renderProducts();
+        // Funcionalidad de búsqueda
+document.getElementById('searchInput').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    filteredProducts = allProducts.filter(product => 
+        product.name.toLowerCase().includes(searchTerm) ||
+        product.description.toLowerCase().includes(searchTerm) ||
+        product.category.toLowerCase().includes(searchTerm)
+    );
+    currentPage = 1;
+    renderProducts();
+});
+    </script>
+</body>
+</html>
