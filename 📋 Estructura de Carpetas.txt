@@ -1,0 +1,36 @@
+proyecto-myd/
+├── app/
+│   ├── Models/
+│   │   ├── User.php (Usuario)
+│   │   ├── Producto.php
+│   │   ├── Categoria.php
+│   │   ├── Pedido.php
+│   │   ├── Direccion.php
+│   │   └── Cotizacion.php
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Auth/
+│   │   │   │   ├── LoginController.php
+│   │   │   │   └── RegisterController.php
+│   │   │   ├── Admin/
+│   │   │   │   ├── DashboardController.php
+│   │   │   │   ├── ProductoController.php
+│   │   │   │   └── PedidoController.php
+│   │   │   ├── ProductoController.php
+│   │   │   ├── CarritoController.php
+│   │   │   └── CotizacionController.php
+│   │   └── Middleware/
+│   │       ├── AdminMiddleware.php
+│   │       └── ClienteMiddleware.php
+├── database/
+│   ├── migrations/
+│   └── seeders/
+├── resources/
+│   └── views/
+│       ├── auth/
+│       ├── admin/
+│       ├── cliente/
+│       └── layouts/
+└── routes/
+    ├── web.php
+    └── api.php
