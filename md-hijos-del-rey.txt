@@ -1,0 +1,210 @@
+md-hijos-del-rey/
+├── 📁 frontend/
+│   ├── 📁 assets/
+│   │   ├── 📁 css/
+│   │   │   ├── 📄 styles.css
+│   │   │   ├── 📄 carrito.css
+│   │   │   └── 📄 catalogo.css
+│   │   ├── 📁 js/
+│   │   │   ├── 📄 main.js
+│   │   │   ├── 📄 carrito.js
+│   │   │   └── 📄 catalogo.js
+│   │   └── 📁 imagenes/
+│   │       ├── 📁 productos/
+│   │       ├── 📁 banner/
+│   │       └── 📁 logo/
+│   ├── 📄 index.html
+│   ├── 📄 login.html
+│   ├── 📄 registro.html
+│   ├── 📄 catalogo.html
+│   ├── 📄 carrito.html
+│   ├── 📄 producto.html
+│   ├── 📄 cotizar.html
+│   ├── 📄 blog.html
+│   ├── 📄 nosotros.html
+│   └── 📄 contacto.html
+│
+├── 📁 backend/
+│   ├── 📁 config/
+│   │   ├── 📄 database.php
+│   │   ├── 📄 config.php
+│   │   └── 📄 constants.php
+│   ├── 📁 conexion/
+│   │   ├── 📄 db_conexion.php
+│   │   └── 📄 pdo_conexion.php
+│   ├── 📁 modelos/
+│   │   ├── 📄 Usuario.php
+│   │   ├── 📄 Producto.php
+│   │   ├── 📄 Categoria.php
+│   │   ├── 📄 Pedido.php
+│   │   ├── 📄 Carrito.php
+│   │   ├── 📄 Cotizacion.php
+│   │   ├── 📄 Direccion.php
+│   │   └── 📄 Resena.php
+│   ├── 📁 controladores/
+│   │   ├── 📄 AuthController.php
+│   │   ├── 📄 ProductoController.php
+│   │   ├── 📄 CarritoController.php
+│   │   ├── 📄 PedidoController.php
+│   │   ├── 📄 CotizacionController.php
+│   │   ├── 📄 UsuarioController.php
+│   │   ├── 📄 AdminController.php
+│   │   └── 📄 ReporteController.php
+│   ├── 📁 api/
+│   │   ├── 📁 auth/
+│   │   │   ├── 📄 login.php
+│   │   │   ├── 📄 registro.php
+│   │   │   ├── 📄 logout.php
+│   │   │   └── 📄 verificar.php
+│   │   ├── 📁 productos/
+│   │   │   ├── 📄 listar.php
+│   │   │   ├── 📄 buscar.php
+│   │   │   ├── 📄 filtrar.php
+│   │   │   └── 📄 detalle.php
+│   │   ├── 📁 carrito/
+│   │   │   ├── 📄 agregar.php
+│   │   │   ├── 📄 eliminar.php
+│   │   │   ├──   actualizar.php
+│   │   │   └── 📄 listar.php
+│   │   ├── 📁 pedidos/
+│   │   │   ├── 📄 crear.php
+│   │   │   ├── 📄 listar.php
+│   │   │   ├── 📄 historial.php
+│   │   │   └── 📄 estado.php
+│   │   ├── 📁 cotizaciones/
+│   │   │   ├── 📄 solicitar.php
+│   │   │   ├── 📄 listar.php
+│   │   │   └── 📄 responder.php
+│   │   └── 📁 admin/
+│   │       ├── 📄 dashboard.php
+│   │       ├── 📄 usuarios.php
+│   │       ├── 📄 productos_admin.php
+│   │       ├── 📄 pedidos_admin.php
+│   │       └── 📄 reportes.php
+│   ├── 📁 includes/
+│   │   ├── 📄 header.php
+│   │   ├── 📄 footer.php
+│   │   ├── 📄 funciones.php
+│   │   ├── 📄 validaciones.php
+│   │   └── 📄 sesion.php
+│   └── 📁 uploads/
+│       ├── 📁 productos/
+│       └── 📁 documentos/
+│
+├── 📁 base_de_datos/
+│   ├── 📁 scripts/
+│   │   ├── 📄 crear_base_datos.sql
+│   │   ├── 📄 crear_tablas.sql
+│   │   ├──   datos_iniciales.sql
+│   │   └── 📄 procedimientos_almacenados.sql
+│   ├── 📁 diagramas/
+│   │   ├── 📄 diagrama_er.png
+│   │   └── 📄 esquema_relacional.png
+│   └── 📁 backups/
+│
+├── 📁 documentacion/
+│   ├── 📄 manual_usuario.pdf
+│   ├── 📄 manual_tecnico.pdf
+│   ├── 📄 api_documentacion.md
+│   └── 📄 diagrama_flujo.pdf
+│
+└──  
+
+
+## 🗄️ MODELO ENTIDAD-RELACIÓN (E/R)
+
+### ENTIDADES PRINCIPALES:
+
+**👤 USUARIO**
+- id_usuario (PK)
+- nombre
+- apellido
+- email
+- contraseña
+- telefono
+- tipo_usuario (cliente/admin)
+- fecha_registro
+- estado (activo/inactivo)
+- email_verificado
+
+**📦 PRODUCTO**
+- id_producto (PK)
+- nombre
+- descripcion
+- precio
+- stock
+- imagen
+- id_categoria (FK)
+- fecha_creacion
+- estado (activo/inactivo)
+- sku
+
+**🏷️ CATEGORÍA**
+- id_categoria (PK)
+- nombre
+- descripcion
+- imagen
+- categoria_padre (FK - auto-relación)
+- estado
+
+**🛒 CARRITO**
+- id_carrito (PK)
+- id_usuario (FK)
+- id_producto (FK)
+- cantidad
+- fecha_agregado
+- precio_unitario
+
+**📋 PEDIDO**
+- id_pedido (PK)
+- id_usuario (FK)
+- fecha_pedido
+- total
+- estado (pendiente/en_proceso/enviado/entregado/cancelado)
+- direccion_envio
+- metodo_pago
+- fecha_entrega
+- tracking_number
+
+**📄 DETALLE_PEDIDO**
+- id_detalle (PK)
+- id_pedido (FK)
+- id_producto (FK)
+- cantidad
+- precio_unitario
+- subtotal
+
+**💰 COTIZACIÓN**
+- id_cotizacion (PK)
+- id_usuario (FK)
+- descripcion_requerimiento
+- archivos_adjuntos
+- estado (pendiente/respondida/cerrada)
+- fecha_solicitud
+- fecha_respuesta
+- monto_cotizado
+- observaciones
+
+**🏠 DIRECCIÓN**
+- id_direccion (PK)
+- id_usuario (FK)
+- tipo_envio (principal/secundario)
+- calle
+- numero
+- colonia
+- ciudad
+- estado
+- codigo_postal
+- pais
+- referencias
+
+**⭐ RESEÑA**
+- id_resena (PK)
+- id_producto (FK)
+- id_usuario (FK)
+- calificacion (1-5)
+- comentario
+- fecha_resena
+- estado (aprobada/pendiente/rechazada)
+
+
